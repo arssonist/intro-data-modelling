@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830173739) do
+ActiveRecord::Schema.define(version: 20160830180352) do
+
+  create_table "appt_infos", force: :cascade do |t|
+    t.integer  "doctor_id"
+    t.integer  "patient_id"
+    t.time     "appt_time"
+    t.string   "appt_location"
+    t.boolean  "spouse_accompanying?"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string   "name"
@@ -18,6 +28,14 @@ ActiveRecord::Schema.define(version: 20160830173739) do
     t.string   "email"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "office_address"
+    t.string   "phone"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "ingredient_recipes", force: :cascade do |t|
@@ -40,6 +58,14 @@ ActiveRecord::Schema.define(version: 20160830173739) do
     t.integer  "customer_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "recipes", force: :cascade do |t|
